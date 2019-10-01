@@ -1,9 +1,12 @@
 package com.angulardemo.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,6 +20,12 @@ public class Student {
 	private String name;
 	@Column(name="department")
 	private String department;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="address_id")
+	private Address address;
+	@Column(name="country_name")
+	private String countryName;
+	
 	public int getId() {
 		return id;
 	}
@@ -35,6 +44,17 @@ public class Student {
 	public void setDepartment(String department) {
 		this.department = department;
 	}
-	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+	public String getCountryName() {
+		return countryName;
+	}
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
 	
 }
